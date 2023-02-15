@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import OnBoardingList from '../../components/onBoardingSec/onBoardingList'
 
 const OnBoardingScreen = () => {
-  return (
-    <View>
-      <Text>OnBoardingScreen</Text>
-    </View>
-  )
+    return (
+        <View style={{ flex: 1 }}>
+            <OnBoardingList />
+        </View>
+    )
 }
 
 export default OnBoardingScreen

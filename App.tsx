@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
   Image,
@@ -26,6 +26,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Navigation from './src/navigation';
+import { IsDarkContext } from './src/contexts/isDarkContext';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -35,15 +36,15 @@ type SectionProps = PropsWithChildren<{
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  // context value
+  const [isDark, setIsDark] = useState<boolean>(isDarkMode);
 
   return (
-    <View style={{ flex: 1 }}>
-      <Navigation />
-    </View>
+    <IsDarkContext.Provider value={{ isDark, setIsDark }}>
+      <View style={{ flex: 1 }}>
+        <Navigation />
+      </View>
+    </IsDarkContext.Provider>
   );
 }
 
