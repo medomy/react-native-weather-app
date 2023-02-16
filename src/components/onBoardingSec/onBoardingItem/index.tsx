@@ -47,14 +47,15 @@ const styles = StyleSheet.create({
         flex: 0.4,
         alignItems: "center",
         width: SIZES.fullWidth,
-        marginVertical : SIZES.margin
+        marginVertical: SIZES.margin,
+        justifyContent: "center"
     },
     title: {
         color: COLORS.primaryGradiant,
         textAlign: "center",
         ...FONTS.h2,
         fontWeight: "bold",
-        marginVertical : SIZES.margin
+        marginVertical: SIZES.margin
     },
     description: {
         ...FONTS.body3,
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     btnGradiant: {
         width: "50%",
         borderRadius: SIZES.btnRadius,
-        marginVertical : SIZES.margin
+        marginVertical: SIZES.margin
     },
     btn: {
         paddingVertical: SIZES.padding,
