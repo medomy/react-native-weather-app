@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { COLORS } from '../constants';
 import OnBoardingScreen from '../screens/onBoardingScreen';
 import HomeScreen from '../screens/home';
+import LoadingScreen from '../screens/loadingScreen';
 
 const StackNavigator = createNativeStackNavigator();
 const Navigation = () => {
@@ -33,6 +34,7 @@ const Navigation = () => {
       }}>
         <StackNavigator.Screen name='OnBoarding' component={OnBoardingScreen} />
         <StackNavigator.Screen name='Home' component={HomeScreen} />
+        <StackNavigator.Screen name='loading' component={LoadingScreen} />
       </StackNavigator.Navigator>
     </NavigationContainer>
   )

@@ -22,7 +22,7 @@ const OnBoardingItemComponent = ({ isLast, item }: props) => {
                 <Text style={[styles.title]}>{item.title}</Text>
                 <Text style={[styles.description, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>{item.description}</Text>
                 {isLast && <LinearGradient colors={[COLORS.primaryGradiant, COLORS.socendryGradiant, COLORS.thirdGradiant]} style={styles.btnGradiant}>
-                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Home" as never)}>
+                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("loading" as never)}>
                         <Text style={styles.description}>Got it</Text>
                     </TouchableOpacity>
                 </LinearGradient>}
