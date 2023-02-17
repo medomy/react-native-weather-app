@@ -4,6 +4,7 @@ import { OnBoardingItem } from '../../../types/onboardingItem'
 import { COLORS, FONTS, SIZES } from '../../../constants'
 import { IsDarkContext } from '../../../contexts/isDarkContext'
 import LinearGradient from 'react-native-linear-gradient'
+import { useNavigation } from '@react-navigation/native'
 
 type props = {
     item: OnBoardingItem,
@@ -11,6 +12,7 @@ type props = {
 }
 const OnBoardingItemComponent = ({ isLast, item }: props) => {
     const isDarkState = useContext(IsDarkContext);
+    const navigation = useNavigation();
     return (
         <View style={[styles.container, { backgroundColor: isDarkState?.isDark ? COLORS.black : COLORS.white }]}>
             <Image
@@ -20,7 +22,7 @@ const OnBoardingItemComponent = ({ isLast, item }: props) => {
                 <Text style={[styles.title]}>{item.title}</Text>
                 <Text style={[styles.description, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>{item.description}</Text>
                 {isLast && <LinearGradient colors={[COLORS.primaryGradiant, COLORS.socendryGradiant, COLORS.thirdGradiant]} style={styles.btnGradiant}>
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate("Home" as never)}>
                         <Text style={styles.description}>Got it</Text>
                     </TouchableOpacity>
                 </LinearGradient>}

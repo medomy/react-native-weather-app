@@ -4,33 +4,35 @@ import { DarkTheme, DefaultTheme, NavigationContainer, Theme } from '@react-navi
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { COLORS } from '../constants';
 import OnBoardingScreen from '../screens/onBoardingScreen';
+import HomeScreen from '../screens/home';
 
 const StackNavigator = createNativeStackNavigator();
 const Navigation = () => {
-    const defaultTheme : Theme = {
-        ...DefaultTheme,
-        colors : {
-            ...DefaultTheme.colors,
-            background : COLORS.white,
-            text : COLORS.black
-        }
+  const defaultTheme: Theme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: COLORS.white,
+      text: COLORS.black
     }
-    const darkTheme : Theme = {
-        ...DarkTheme,
-        colors : {
-            ...DarkTheme.colors,
-            background : COLORS.black,
-            text : COLORS.white
-        }
+  }
+  const darkTheme: Theme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      background: COLORS.black,
+      text: COLORS.white
     }
+  }
   return (
     <NavigationContainer>
-      <StackNavigator.Navigator initialRouteName='OnBoarding' screenOptions={({navigation})=>{
+      <StackNavigator.Navigator initialRouteName='OnBoarding' screenOptions={({ navigation }) => {
         return {
-            headerShown : false
+          headerShown: false
         }
       }}>
         <StackNavigator.Screen name='OnBoarding' component={OnBoardingScreen} />
+        <StackNavigator.Screen name='Home' component={HomeScreen} />
       </StackNavigator.Navigator>
     </NavigationContainer>
   )
