@@ -16,6 +16,7 @@ export const COLORS = {
     transparent: "transparent",
     darkgray: '#898C95',
     danger: "#df4759",
+    bgGradientLight : "#f4ebfe"
 }
 
 export const SIZES = {

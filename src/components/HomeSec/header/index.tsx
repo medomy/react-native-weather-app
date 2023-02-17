@@ -4,7 +4,10 @@ import { COLORS, FONTS, SIZES } from '../../../constants'
 import { IsDarkContext } from '../../../contexts/isDarkContext'
 import { Switch } from 'react-native-switch'
 
-const HomeHeader = () => {
+type props = {
+    cityName: string
+}
+const HomeHeader = ({ cityName }: props) => {
     const isDarkState = useContext(IsDarkContext);
     const changeTheme = (value: boolean) => {
         isDarkState?.setIsDark(value);
@@ -14,7 +17,7 @@ const HomeHeader = () => {
             <TouchableOpacity>
                 <DrawerIcon />
             </TouchableOpacity>
-            <Text style={[styles.txt, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>City</Text>
+            <Text style={[styles.txt, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>{cityName}</Text>
             <Switch
                 value={isDarkState?.isDark}
                 onValueChange={changeTheme}
@@ -23,7 +26,7 @@ const HomeHeader = () => {
                 activeText=''
                 inActiveText=''
                 barHeight={25}
-                renderInsideCircle={()=> (
+                renderInsideCircle={() => (
                     <View style={styles.outerCircle}>
                         <View style={styles.innerCircle}></View>
                     </View>
@@ -51,8 +54,8 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         width: SIZES.fullWidth,
-        paddingHorizontal:2* SIZES.padding2,
-        paddingVertical:3* SIZES.padding2
+        paddingHorizontal: 2 * SIZES.padding2,
+        paddingVertical: 3 * SIZES.padding2
     },
     txt: {
         ...FONTS.h4,
@@ -66,18 +69,18 @@ const styles = StyleSheet.create({
         height: 3,
         borderRadius: SIZES.radius2,
     },
-    outerCircle : {
-        width : SIZES.iconSize,
-        height : SIZES.iconSize,
-        borderRadius : 0.5 * SIZES.iconSize,
-        backgroundColor : COLORS.offWhite,
-        justifyContent : "center",
-        alignItems : "center"
+    outerCircle: {
+        width: SIZES.iconSize,
+        height: SIZES.iconSize,
+        borderRadius: 0.5 * SIZES.iconSize,
+        backgroundColor: COLORS.offWhite,
+        justifyContent: "center",
+        alignItems: "center"
     },
-    innerCircle:{
-        backgroundColor : COLORS.primaryGradiant,
-        width : 0.25 * SIZES.iconSize,
-        height : 0.25 * SIZES.iconSize,
-        borderRadius : 0.5* 0.25 * SIZES.iconSize
+    innerCircle: {
+        backgroundColor: COLORS.primaryGradiant,
+        width: 0.25 * SIZES.iconSize,
+        height: 0.25 * SIZES.iconSize,
+        borderRadius: 0.5 * 0.25 * SIZES.iconSize
     }
 })
