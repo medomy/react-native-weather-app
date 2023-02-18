@@ -35,6 +35,7 @@ const HomeScreen = () => {
         localtime_epoch: 0,
         localtime: ""
     });
+    const [hourlyWeatherData, setHourlyWeatherData] = useState<WeatherData[]>([]);
     const isDarkState = useContext(IsDarkContext);
     const route = useRoute();
     const params = route.params as NavigationParams;
@@ -43,6 +44,7 @@ const HomeScreen = () => {
             const data = await WeatherApi.getWeatherData(params.position);
             setWeatherData(data.weatherData);
             setLocationData(data.locationData);
+            setHourlyWeatherData(data.hourlyWeatherData);
         } catch (err) {
             const asyncStorageData = await getWeatherDataAsyncStorage();
             setWeatherData((prev) => asyncStorageData?.weatherData ?? prev);
@@ -62,7 +64,7 @@ const HomeScreen = () => {
                     <WeatherCardCurrent weatherData={weatherData} />
                 </LinearGradient>
                 <View style={{ flex: 0.3, backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.offWhite, zIndex: -1 }}>
-                    <HourlyWeatherList />
+                    <HourlyWeatherList hourluWeatherData={hourlyWeatherData} currentTime={weatherData.timeString!} />
                 </View>
                 <WeatherInfoSec weatherData={weatherData} />
             </View>
