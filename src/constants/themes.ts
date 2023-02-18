@@ -29,7 +29,7 @@ export const SIZES = {
     fullWidth: "100%",
     iconSize: 25,
     iconSize2: 20,
-    largeTitle: 50,
+    largeTitle: 60,
     h1: 40,
     h2: 32,
     h3: 28,
@@ -41,11 +41,12 @@ export const SIZES = {
     body5: 12,
     radius: 30,
     radius2: 15,
+    bigRadius: 60,
     btnRadius: 8
 }
 
 export const FONTS = {
-    largeTitle: { fontFamily: "Lato-Black", fontSize: SIZES.largeTitle, lineHeight: 50 },
+    largeTitle: { fontFamily: "Lato-Black", fontSize: SIZES.largeTitle, lineHeight: 60 },
     h1: { fontFamily: "Lato-Black", fontSize: SIZES.h1, lineHeight: 40 },
     h2: { fontFamily: "Lato-Bold", fontSize: SIZES.h2, lineHeight: 34 },
     h3: { fontFamily: "Lato-Bold", fontSize: SIZES.h3, lineHeight: 30 },

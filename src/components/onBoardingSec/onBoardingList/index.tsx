@@ -17,6 +17,7 @@ const OnBoardingList = () => {
     const viewChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
         setCurrentIndex(viewableItems[0].index ?? 0);
     }, [])
+    const viewabilityConfigCallbackPairs = useRef([{onViewableItemsChanged: viewChanged }])
     return (
         <View style={{ flex: 1 }}>
             <View style={{ flex: 4 }}>
@@ -36,7 +37,7 @@ const OnBoardingList = () => {
                     ref={listRef} />
             </View>
             <View style={{ flex: 1 }}>
-                <Pagination data={OnBoardingItems} selectedIndex={currentIndex} scrollX={scrollX}/>
+                <Pagination data={OnBoardingItems} selectedIndex={currentIndex} scrollX={scrollX} />
             </View>
         </View>
     )

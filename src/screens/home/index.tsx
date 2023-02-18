@@ -9,6 +9,10 @@ import { WeatherData } from '../../types/weatherData'
 import { LocationData } from '../../types/locationData'
 import WeatherApi from '../../services/weather/weatherApi'
 import { getWeatherDataAsyncStorage } from '../../services/weather/weatherAsyncStorage'
+import LinearGradient from 'react-native-linear-gradient'
+import WeatherCardCurrent from '../../components/HomeSec/weatherCard'
+import WeatherInfoSec from '../../components/HomeSec/weathernfoSec'
+import HourlyWeatherList from '../../components/HomeSec/hourlyWeatherList'
 
 type NavigationParams = {
     position: Position
@@ -53,6 +57,15 @@ const HomeScreen = () => {
     return (
         <View style={{ flex: 1, backgroundColor: isDarkState?.isDark ? COLORS.black : COLORS.white }}>
             <HomeHeader cityName={locationData.name} />
+            <View style={{ flex: 1 }}>
+                <LinearGradient style={{ flex: 0.7 }} colors={isDarkState?.isDark ? [COLORS.black, COLORS.black] : [COLORS.white, COLORS.bgGradientLight]}>
+                    <WeatherCardCurrent weatherData={weatherData} />
+                </LinearGradient>
+                <View style={{ flex: 0.3, backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.offWhite, zIndex: -1 }}>
+                    <HourlyWeatherList />
+                </View>
+                <WeatherInfoSec weatherData={weatherData} />
+            </View>
         </View>
     )
 }
