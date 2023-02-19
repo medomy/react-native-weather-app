@@ -49,6 +49,7 @@ const HomeScreen = () => {
             const asyncStorageData = await getWeatherDataAsyncStorage();
             setWeatherData((prev) => asyncStorageData?.weatherData ?? prev);
             setLocationData((prev) => asyncStorageData?.locationData ?? prev);
+            setHourlyWeatherData((prev) => asyncStorageData?.hourlyWeatherDataDay ?? prev);
             console.warn(err);
         }
     }
@@ -66,7 +67,7 @@ const HomeScreen = () => {
                 <View style={{ flex: 0.3, backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.offWhite, zIndex: -1 }}>
                     <HourlyWeatherList hourluWeatherData={hourlyWeatherData} currentTime={weatherData.timeString!} />
                 </View>
-                <WeatherInfoSec weatherData={weatherData} />
+                <WeatherInfoSec weatherData={weatherData} bottomPosition={"22%"} />
             </View>
         </View>
     )

@@ -5,9 +5,10 @@ import { IsDarkContext } from '../../../contexts/isDarkContext'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { WeatherData } from '../../../types/weatherData'
 type props = {
-    weatherData: WeatherData
+    weatherData: WeatherData,
+    bottomPosition: string | number
 }
-const WeatherInfoSec = ({ weatherData }: props) => {
+const WeatherInfoSec = ({ weatherData, bottomPosition }: props) => {
     const isDarkState = useContext(IsDarkContext);
     const data = useMemo(() => {
         return [
@@ -29,7 +30,7 @@ const WeatherInfoSec = ({ weatherData }: props) => {
         ]
     }, [weatherData])
     return (
-        <View style={[styles.infoSec, { backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.white }]}>
+        <View style={[styles.infoSec, { backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.white }, { bottom: bottomPosition }]}>
             {data.map((d) => (
                 <WeatherInfoBit key={d.icon} iconName={d.icon} description={d.description} value={d.value} />
             ))}
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
         paddingVertical: 1.8 * SIZES.padding2,
         alignSelf: "center",
         position: "absolute",
-        bottom: "22%",
+        //bottom: "22%",
         borderRadius: SIZES.radius2,
         zIndex: 100,
         elevation: 5

@@ -8,7 +8,7 @@ import { setWeatherData } from "./weatherAsyncStorage";
 
 export default class WeatherApi {
     // get the data for 7 days forecast and certailn location
-    static async getWeatherData(position: Position): Promise<{ weatherData: WeatherData, locationData: LocationData, hourlyWeatherData: WeatherData[] }> {
+    static async getWeatherData(position: Position): Promise<{ weatherData: WeatherData, locationData: LocationData, hourlyWeatherData: WeatherData[], forecastDays: ForeCast[] }> {
         try {
             const response = await apiInstance.get(`/forecast.json`, {
                 params: {
@@ -53,9 +53,25 @@ export default class WeatherApi {
                     timeString: h.time
                 }
             })
-
-            await setWeatherData(weatherData, locationData, hourlyWeatherData);
-            return { weatherData, locationData, hourlyWeatherData };
+            // requested forecast data
+            const forecastDays: ForeCast[] = response.data.forecast.forecastday.map((f: any) => {
+                return {
+                    maxtemp_c: f.day.maxtemp_c,
+                    mintemp_c: f.day.mintemp_c,
+                    time_epoch: f.date_epoch,
+                    temp_C: f.day.maxtemp_c,
+                    wind_kph: f.day.maxwind_kph,
+                    humidity: f.day.avghumidity,
+                    vis_km: f.day.avgvis_km,
+                    condition: {
+                        text: f.day.condition.text,
+                        icon: `https:${f.day.condition.icon}`
+                    },
+                    timeString: f.date
+                }
+            })
+            await setWeatherData(weatherData, locationData, hourlyWeatherData, forecastDays);
+            return { weatherData, locationData, hourlyWeatherData, forecastDays };
         } catch (err) {
             throw new Error(`could not request api , ${err}`);
         }

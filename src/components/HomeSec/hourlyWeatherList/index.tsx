@@ -5,6 +5,7 @@ import { IsDarkContext } from '../../../contexts/isDarkContext'
 import Icon from 'react-native-vector-icons/Entypo'
 import { WeatherData } from '../../../types/weatherData'
 import HourlyWeatherCard from '../hourlyWeatherCard'
+import { useNavigation } from '@react-navigation/native'
 
 type props = {
     hourluWeatherData: WeatherData[],
@@ -12,16 +13,21 @@ type props = {
 }
 const HourlyWeatherList = ({ hourluWeatherData, currentTime }: props) => {
     const isDarkState = useContext(IsDarkContext);
+    const navigation = useNavigation();
+    // flat list renderer
     const renderWeatherCards: ListRenderItem<WeatherData> = ({ item }) => {
         return <HourlyWeatherCard
             weatherData={item}
             currentTime={currentTime.split(" ")[1].split(":")[0] == item.timeString!.split(" ")[1].split(":")[0]} />
     }
+    const navigateToForecast = () => {
+        navigation.navigate("Forecast" as never);
+    }
     return (
         <View style={styles.container}>
             <View style={styles.row}>
                 <Text style={[styles.txt, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>Today</Text>
-                <TouchableOpacity style={[styles.btn]}>
+                <TouchableOpacity style={[styles.btn]} onPress={navigateToForecast}>
                     <Text style={[styles.txt, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>
                         Next 7 Days
                     </Text>
