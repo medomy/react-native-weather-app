@@ -10,7 +10,7 @@ const ForecastHeader = () => {
     return (
         <View style={[styles.header, { backgroundColor: isDarkState?.isDark ? COLORS.black : COLORS.white }]}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Icon name='long-arrow-left' size={SIZES.iconSize2} color={isDarkState?.isDark ? COLORS.white : COLORS.black} />
+                <Icon name='arrow-left' size={SIZES.iconSize2} color={isDarkState?.isDark ? COLORS.white : COLORS.black} />
             </TouchableOpacity>
             <View style={styles.rest}>
                 <Text style={[styles.txt, { color: isDarkState?.isDark ? COLORS.white : COLORS.black }]}>Next 7 Days</Text>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: SIZES.fullWidth,
         paddingHorizontal: 2 * SIZES.padding2,
-        paddingVertical: 3 * SIZES.padding2
+        paddingVertical: 1 * SIZES.padding2
     },
     txt: {
         ...FONTS.h4,

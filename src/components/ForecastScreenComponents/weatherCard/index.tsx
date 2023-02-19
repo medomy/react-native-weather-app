@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         width: "90%",
         borderRadius: SIZES.radius,
         paddingHorizontal: SIZES.padding2,
-        paddingVertical: 2 * SIZES.padding2,
+        paddingVertical:  SIZES.padding2,
         flexDirection: "row",
         alignItems: "center",
         alignSelf: "center",

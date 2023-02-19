@@ -7,6 +7,8 @@ import { COLORS, images } from '../../constants'
 import { ForeCast } from '../../types/foreCast'
 import { getWeatherDataAsyncStorage } from '../../services/weather/weatherAsyncStorage'
 import ForecastWeatherCard from '../../components/ForecastScreenComponents/weatherCard'
+import WeatherInfoSec from '../../components/HomeSec/weathernfoSec'
+import ForecastList from '../../components/ForecastScreenComponents/forecastList'
 
 const ForeCastScreen = () => {
     const [forecastDays, setForecastDays] = useState<ForeCast[]>([{
@@ -42,7 +44,10 @@ const ForeCastScreen = () => {
                 style={{ flex: 0.3 }}>
                 {forecastDays.length > 1 && <ForecastWeatherCard forecastDay={forecastDays[1]} />}
             </LinearGradient>
-            <View style={{ flex: 0.7, backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.offWhite }}></View>
+            <View style={{ flex: 0.7, backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.offWhite }}>
+                <ForecastList forcastList={forecastDays} />
+            </View>
+            {forecastDays.length > 1 && <WeatherInfoSec bottomPosition={"56%"} weatherData={forecastDays[1]} />}
         </View>
     )
 }
