@@ -18,17 +18,7 @@ type NavigationParams = {
     position: Position
 }
 const HomeScreen = () => {
-    const [weatherData, setWeatherData] = useState<WeatherData>({
-        time_epoch: 0,
-        temp_C: 0,
-        condition: {
-            text: "",
-            icon: ""
-        },
-        wind_kph: 0,
-        humidity: 0,
-        vis_km: 0
-    });
+    const [weatherData, setWeatherData] = useState<WeatherData>();
     const [locationData, setLocationData] = useState<LocationData>({
         name: "",
         country: "",
@@ -62,12 +52,12 @@ const HomeScreen = () => {
             <HomeHeader cityName={locationData.name} />
             <View style={{ flex: 1 }}>
                 <LinearGradient style={{ flex: 0.7 }} colors={isDarkState?.isDark ? [COLORS.black, COLORS.black] : [COLORS.white, COLORS.bgGradientLight]}>
-                    <WeatherCardCurrent weatherData={weatherData} />
+                    {weatherData && <WeatherCardCurrent weatherData={weatherData} />}
                 </LinearGradient>
                 <View style={{ flex: 0.3, backgroundColor: isDarkState?.isDark ? COLORS.offBlack : COLORS.offWhite, zIndex: -1 }}>
-                    <HourlyWeatherList hourluWeatherData={hourlyWeatherData} currentTime={weatherData.timeString!} />
+                    {weatherData && <HourlyWeatherList hourluWeatherData={hourlyWeatherData} currentTime={weatherData.timeString!} />}
                 </View>
-                <WeatherInfoSec weatherData={weatherData} bottomPosition={"22%"} />
+                {weatherData && <WeatherInfoSec weatherData={weatherData} bottomPosition={"22%"} />}
             </View>
         </View>
     )
