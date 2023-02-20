@@ -5,28 +5,15 @@
  * @format
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { PropsWithChildren } from 'react';
 import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
   useColorScheme,
   View,
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import Navigation from './src/navigation';
 import { IsDarkContext } from './src/contexts/isDarkContext';
+import SplashScreen from 'react-native-splash-screen';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -39,6 +26,9 @@ function App(): JSX.Element {
   // context value
   const [isDark, setIsDark] = useState<boolean>(isDarkMode);
 
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
   return (
     <IsDarkContext.Provider value={{ isDark, setIsDark }}>
       <View style={{ flex: 1 }}>
